@@ -16,7 +16,7 @@ def envMessage='';
 node{
     stage('Checkout Code')
     {
-	printEnv()
+	//printEnv()
         try
         {
 	    echo 'wwww starting...'
