@@ -233,9 +233,9 @@ node{
 }
 def printEnv() 
 {
-	echo "BUILD_NUMBER ${$BUILD_NUMBER}"  
-	echo "BUILD_ID ${$BUILD_ID}"
-	echo "BUILD_DISPLAY_NAME ${BUILD_DISPLAY_NAME}" 
+	echo """BUILD_NUMBER ${$BUILD_NUMBER}"""  
+	echo """BUILD_ID ${$BUILD_ID}"""
+	echo """BUILD_DISPLAY_NAME ${BUILD_DISPLAY_NAME}""" 
 	/*
 echo "JOB_NAME" :: $JOB_NAME
 echo "JOB_BASE_NAME" :: $JOB_BASE_NAME
