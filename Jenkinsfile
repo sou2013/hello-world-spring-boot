@@ -13,6 +13,7 @@ def commit_Email;
 def appDeployProcess;
 def imageName;
 def envMessage='';
+def appVer;
 node{
     stage('Checkout Code')
     {
@@ -24,6 +25,9 @@ node{
 		sh 'whoami'
             checkout scm
 	    echo 'wwww 222 tag:' + tagName 
+	pom = readMavenPom file: 'pom.xml'
+        appVer =  pom.version	
+	 echo "wwww 222 appVer: $appVer"	
             props = readProperties  file: """deploy.properties"""
 	    echo 'wwww 333'
 		workspace = pwd ()
