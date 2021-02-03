@@ -137,12 +137,13 @@ node{
 	def app
         try {
 		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
-                imageName="hellospringboot"
+                imageName="hellospringboot:1.0.0"
 		pwd
 		sh "cd /home/stan/.jenkins/workspace/pipeline3"
-		def mydir = sh "pwd"
+		def mydir = pwd
 		echo "mydir ${mydir}" 
-		sh "sudo docker build -t ${imageName} /home/stan/.jenkins/workspace/pipeline3"
+		//sh "sudo docker build -t ${imageName} /home/stan/.jenkins/workspace/pipeline3"
+		sh "sudo docker build -t ${imageName} ."
 		// app = docker.build(imageName) 
         }
     	catch (e) {
