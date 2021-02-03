@@ -91,7 +91,7 @@ node{
 		try
 		{
 			sh "/usr/local/bin/maven363/bin/mvn clean package"
-			sh "ls -al"
+			sh "ls -al ./target"
 		}
 		catch (e) 
 		{
