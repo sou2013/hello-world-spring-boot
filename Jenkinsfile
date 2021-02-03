@@ -104,7 +104,7 @@ node{
     stage ('Unit Test Execution')
     { 
       try {
-            sh """/usr/local/bin/maven363/bin/mvn clean test"""
+        //    sh """/usr/local/bin/maven363/bin/mvn clean test"""
         }
     	catch (e) {
     		currentBuild.result='FAILURE'
@@ -138,8 +138,11 @@ node{
         try {
 		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
                 imageName="hellospringboot"
+		pwd
 		sh "cd /home/stan/.jenkins/workspace/pipeline3"
-		sh "sudo docker build -t ${imageName} ."
+		def mydir = sh "pwd"
+		echo "mydir ${mydir}" 
+		sh "sudo docker build -t ${imageName} /home/stan/.jenkins/workspace/pipeline3"
 		// app = docker.build(imageName) 
         }
     	catch (e) {
