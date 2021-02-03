@@ -14,6 +14,7 @@ def appDeployProcess;
 def imageName;
 def envMessage='';
 def appVer;
+def ind;
 node{
     stage('Checkout Code')
     {
@@ -27,7 +28,11 @@ node{
 	    echo 'wwww 222 tag:' + tagName 
 	pom = readMavenPom file: 'pom.xml'
         appVer =  pom.version	
-	 echo "wwww 222 appVer: $appVer"	
+	 echo "wwww 222 appVer: $appVer"
+	 ind = appVer.indexOf("-")
+	 appVer = appVer.substring(0,ind)
+	echo "wwww 223 appVer: " + appVer	
+		
             props = readProperties  file: """deploy.properties"""
 	    echo 'wwww 333'
 		workspace = pwd ()
@@ -149,7 +154,7 @@ node{
 		def mydir = pwd
 		echo "mydir ${mydir}" 
 		//sh "sudo docker build -t ${imageName} /home/stan/.jenkins/workspace/pipeline3"
-		sh "sudo docker build -t ${imageName} ."
+		sh "sudo docker build -t ${appVer} ."
 		// app = docker.build(imageName) 
         }
     	catch (e) {
