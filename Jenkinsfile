@@ -16,12 +16,12 @@ def envMessage='';
 node{
     stage('Checkout Code')
     {
-	printEnv()
+	//printEnv()
         try
         {
 	    echo 'wwww starting...'
             checkout scm
-	    echo 'wwww 222'
+	    echo 'wwww 222 tag:' + tagName 
             props = readProperties  file: """deploy.properties"""
 	    echo 'wwww 333'
 		workspace = pwd ()
