@@ -156,6 +156,11 @@ node{
 	/*
     stage ('Push Image to Docker Registry')
     { 
+    // from https://github.com/sou2013/docker-hello-world-spring-boot
+    //  sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
+    //  sh "docker tag ${dockerImageName} ${dockerImageTag}"
+    //  sh "docker push ${dockerImageTag}"
+    
        try {
 	   
 			sh """sudo docker push ${imageName}"""
