@@ -19,7 +19,8 @@ node{
 	//printEnv()
         try
         {
-	    echo 'wwww starting...'
+	    echo 'wwww starting... whoami '
+		sh 'whoami'
             checkout scm
 	    echo 'wwww 222 tag:' + tagName 
             props = readProperties  file: """deploy.properties"""
