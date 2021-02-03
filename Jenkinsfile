@@ -16,10 +16,11 @@ def envMessage='';
 node{
     stage('Checkout Code')
     {
-	//printEnv()
+	printEnv()
         try
         {
-	    echo 'wwww starting... whoami '
+	    sh """echo $BUILD_NUMBER"""
+		
 		sh 'whoami'
             checkout scm
 	    echo 'wwww 222 tag:' + tagName 
@@ -247,9 +248,9 @@ node{
 }
 def printEnv() 
 {
-	echo """BUILD_NUMBER: $BUILD_NUMBER """  + $BUILD_NUMBER
-	echo """BUILD_ID ${$BUILD_ID}"""
-	echo """BUILD_DISPLAY_NAME ${BUILD_DISPLAY_NAME}""" 
+	echo """BUILD_NUMBER: $BUILD_NUMBER """  
+	echo """BUILD_ID $BUILD_ID"""
+	echo """BUILD_DISPLAY_NAME $BUILD_DISPLAY_NAME""" 
 	/*
 echo "JOB_NAME" :: $JOB_NAME
 echo "JOB_BASE_NAME" :: $JOB_BASE_NAME
