@@ -139,7 +139,7 @@ node{
 		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
                 imageName="hellospringboot:1.0.0"
 		pwd
-		cd "/home/stan/.jenkins/workspace/pipeline3"
+		// sh "cd /home/stan/.jenkins/workspace/pipeline3"
 		def mydir = pwd
 		echo "mydir ${mydir}" 
 		//sh "sudo docker build -t ${imageName} /home/stan/.jenkins/workspace/pipeline3"
