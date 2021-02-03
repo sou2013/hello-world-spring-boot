@@ -135,7 +135,7 @@ node{
     { 
         try {
 		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
-                imageName="helloSpringBoot"
+                imageName="./target/myproject-0.0.1-SNAPSHOT.jar"
 		sh "sudo docker build -t ${imageName} ."
         }
     	catch (e) {
