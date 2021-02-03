@@ -133,10 +133,12 @@ node{
     */
     stage ('Create Docker Image')
     { 
+	def app
         try {
 		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
                 imageName="hellospringboot"
-		sh "sudo docker build -t ${imageName} ."
+		//sh "sudo docker build -t ${imageName} ."
+		app = docker.build(imageName) 
         }
     	catch (e) {
     		currentBuild.result='FAILURE'
