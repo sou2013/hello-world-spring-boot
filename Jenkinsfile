@@ -138,7 +138,7 @@ node{
         try {
 		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
                 imageName="hellospringboot"
-		sh "docker build -t ${imageName} ."
+		sh "sudo docker build -t ${imageName} ."
 		 //app = docker.build(imageName) 
         }
     	catch (e) {
