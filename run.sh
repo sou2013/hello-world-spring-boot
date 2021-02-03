@@ -1,1 +1,1 @@
-java -jar /myproject-0.0.1-SNAPSHOT.jar
+java -jar /myproject-1.0.0-SNAPSHOT.jar
