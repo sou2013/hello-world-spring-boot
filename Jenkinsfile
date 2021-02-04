@@ -3,7 +3,7 @@ Deployment environment can be anything like Docker, kubernetes or cloud.
 Create 'deploy.properties' file at same location and save all the build and deployment properties. This file will be refered by this pipeline for build and deployment. */
 
 // this is a scripted pipeline, not declarative.  Declarative starts with pipeline {}
-
+// derived from https://github.com/sou2013/SampleProject/blob/master/Jenkinsfile
 def workspace;
 def props='';
 def tagName="1.0.0";
