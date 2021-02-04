@@ -171,7 +171,7 @@ node{
 	   
 			// from https://github.com/sou2013/docker-hello-world-spring-boot
 	    sh """sudo docker login -u ${dkhubuser} -p ${dkhubpswd}"""
-      sh """sudo docker tag ${dkhubuser}/${imageName}"""
+      sh """sudo docker tag ${imageName} ${dkhubuser}/${imageName}"""
       sh """sudo docker push ${dkhubuser}/${imageName}"""
         }
     	catch (e) {
