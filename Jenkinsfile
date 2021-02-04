@@ -163,17 +163,16 @@ node{
     		throw e
     	}
     }
-	/*
-    stage ('Push Image to Docker Registry')
+	
+    stage ('Push Image')
     { 
-    // from https://github.com/sou2013/docker-hello-world-spring-boot
-    //  sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
-    //  sh "docker tag ${dockerImageName} ${dockerImageTag}"
-    //  sh "docker push ${dockerImageTag}"
-    
+
        try {
 	   
-			sh """sudo docker push ${imageName}"""
+			// from https://github.com/sou2013/docker-hello-world-spring-boot
+	    sh """docker login -u ${dkhubuser} -p ${dkhubpswd}"""
+      sh """docker tag ${dkhubuser}/${imageName}"""
+      sh "docker push ${dkhubuser}/${imageName}"
         }
     	catch (e) {
     		currentBuild.result='FAILURE'
@@ -182,6 +181,7 @@ node{
     		throw e
     	}
     }
+	/*
     stage ('Deploy to Environment')
     { 
         try 
