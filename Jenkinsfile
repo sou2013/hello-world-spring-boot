@@ -111,7 +111,7 @@ node{
     	}
 	 
     }
-    stage ('Unit Test Execution')
+    stage ('Unit Test')
     { 
       try {
         //    sh """/usr/local/bin/maven363/bin/mvn clean test"""
@@ -142,7 +142,7 @@ node{
     	}
     }
     */
-    stage ('Create Docker Image')
+    stage ('Build Image')
     { 
 	def app
         try {
@@ -170,9 +170,9 @@ node{
        try {
 	   
 			// from https://github.com/sou2013/docker-hello-world-spring-boot
-	    sh """docker login -u ${dkhubuser} -p ${dkhubpswd}"""
-      sh """docker tag ${dkhubuser}/${imageName}"""
-      sh "docker push ${dkhubuser}/${imageName}"
+	    sh """sudo docker login -u ${dkhubuser} -p ${dkhubpswd}"""
+      sh """sudo docker tag ${dkhubuser}/${imageName}"""
+      sh """sudo docker push ${dkhubuser}/${imageName}"""
         }
     	catch (e) {
     		currentBuild.result='FAILURE'
@@ -240,7 +240,7 @@ node{
 			}
     }
     */
-    stage ('Log JIRA Ticket for Code Promotion')
+    stage ('Log JIRA')
     {
         try {
             logJIRATicket('SUCCESS', "At Stage Log JIRA Ticket", props['JIRAprojectid'], props['JIRAissuetype'], commit_Email, props['JIRAissuereporter'])
