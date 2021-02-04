@@ -22,8 +22,7 @@ node{
         try
         {
 	    sh """echo $BUILD_NUMBER"""
-		
-		sh 'whoami'
+	   echo "wwww branch=feature1"	
             checkout scm
 	    echo 'wwww 222 tag:' + tagName 
 	pom = readMavenPom file: 'pom.xml'
