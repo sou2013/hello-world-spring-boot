@@ -25,7 +25,7 @@ node{
 		
 		sh 'whoami'
             checkout scm
-	    echo 'wwww 222 tag:' + tagName 
+	    echo 'wwww 222  branch=feature1. tag:' + tagName 
 	pom = readMavenPom file: 'pom.xml'
         appVer =  pom.version	
 	 echo "wwww 222 appVer: $appVer"
