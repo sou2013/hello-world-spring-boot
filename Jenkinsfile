@@ -142,44 +142,29 @@ node{
     	}
     }
     */
-    stage ('Build Image')
-    { 
-	def app
-        try {
-		//imageName="""${props['docker.registry']}/${props['deploy.app']}:${props['api.version']}"""
-                imageName="hellospringboot:1.0.0"
-		pwd
-		// sh "cd /home/stan/.jenkins/workspace/pipeline3"
-		def mydir = pwd
-		echo "mydir ${mydir}" 
-		//sh "sudo docker build -t ${imageName} /home/stan/.jenkins/workspace/pipeline3"
-		sh "sudo docker build -t ${appVer} ."
-		// app = docker.build(imageName) 
-        }
-    	catch (e) {
-    		currentBuild.result='FAILURE'
-    		logJIRATicket(currentBuild.result, "At Stage Create Package", props['JIRAprojectid'], props['JIRAissuetype'], commit_Email, props['JIRAissuereporter'])
-    		notifyBuild(currentBuild.result, "At Stage Create Package", "", commit_Email)
-    		throw e
-    	}
-    }
-	
-    stage ('Push Image')
-    { 
+  stage('Build image') {
+        /* This builds the actual image */
 
-       try {
-	   
-			// from https://github.com/sou2013/docker-hello-world-spring-boot
-	    sh """sudo docker login -u ${dkhubuser} -p ${dkhubpswd}"""
-      sh """sudo docker tag ${imageName} ${dkhubuser}/${imageName}"""
-      sh """sudo docker push ${dkhubuser}/${imageName}"""
+        app = docker.build("dockerguy20/hellospringboot:$tagName")
+    }
+
+    stage('Test image') {
+        
+        app.inside {
+            echo "Tests passed"
         }
-    	catch (e) {
-    		currentBuild.result='FAILURE'
-    		logJIRATicket(currentBuild.result, "At Stage Moving Image to Docker Registry", props['JIRAprojectid'], props['JIRAissuetype'], commit_Email, props['JIRAissuereporter'])
-    		notifyBuild(currentBuild.result, "At Stage Moving Image to Docker Registry", "", commit_Email)
-    		throw e
-    	}
+    }
+
+    stage('Push image') {
+        /* 
+			You would need to first register with DockerHub before you can push images to your account
+		*/
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub1') {
+   //         app.push("${env.BUILD_NUMBER}")
+	app.push("$tagName")	
+            app.push("latest")
+            } 
+                echo "Trying to Push Docker Build to DockerHub"
     }
 	/*
     stage ('Deploy to Environment')
